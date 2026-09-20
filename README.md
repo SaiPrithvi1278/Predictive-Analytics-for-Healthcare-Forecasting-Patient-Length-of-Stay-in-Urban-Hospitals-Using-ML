@@ -1,33 +1,29 @@
-# IDRA Capstone Project — Patient Length of Stay Prediction
+IDRA Capstone Project — Patient Length of Stay Prediction
 
-## Predictive Analytics for Healthcare: Forecasting Patient Length of Stay in Urban Hospitals Using Machine Learning
+Predictive Analytics for Healthcare: Forecasting Patient Length of Stay in Urban Hospitals Using Machine Learning
 
-**Status:** Completed  
-**Project Type:** IDRA Data Science & AI Final Capstone  
-**Task:** Regression  
-**Target:** `lengthofstay`
+Status: Completed
+Project Type: IDRA Data Science & AI Final Capstone
+Task: Regression
+Target: lengthofstay
 
-------------------------------------------------------------------------
-
-## 1. Project Overview
+1. Project Overview
 
 This project develops a machine-learning workflow for predicting
-**patient length of stay (LOS)** using patient characteristics,
+patient length of stay (LOS) using patient characteristics,
 medical-condition indicators, clinical measurements, admission
 information, and hospital facility information.
 
 The project follows an end-to-end data science workflow:
 
-**Data Understanding → Data Quality → Data Cleaning → Leakage Detection
+Data Understanding → Data Quality → Data Cleaning → Leakage Detection
 → EDA → Statistical Analysis → Feature Engineering → Model Development →
-Model Evaluation → Findings → Recommendations**
+Model Evaluation → Findings → Recommendations
 
-The target variable is `lengthofstay`, so this is treated as a
-**regression problem**.
+The target variable is lengthofstay, so this is treated as a
+regression problem.
 
-------------------------------------------------------------------------
-
-## 2. Problem Statement
+2. Problem Statement
 
 The objective is to investigate whether information available at or
 before the intended prediction point can be used to estimate the number
@@ -36,104 +32,125 @@ of days a patient will remain hospitalized.
 A key requirement is to avoid variables that reveal the outcome after
 the fact.
 
-------------------------------------------------------------------------
+3. Dataset
 
-## 3. Dataset
+Dataset: Healthcare — Patient Length of Stay
 
-**Dataset:** Healthcare — Patient Length of Stay
+Property
 
-| Property         |          Value |
-|------------------|---------------:|
-| Rows             |         61,680 |
-| Original columns |             28 |
-| Target           | `lengthofstay` |
-| Target range     |      1–17 days |
-| Target mean      |     ~4.00 days |
-| Target median    |         4 days |
+Value
 
-### Main variable groups
+Rows
 
-**Administrative / patient variables** - `gender` - `rcount` - `facid` -
-`eid`
+61,680
 
-**Medical-condition indicators** - `dialysisrenalendstage` - `asthma` -
-`irondef` - `pneum` - `substancedependence` -
-`psychologicaldisordermajor` - `depress` - `psychother` -
-`fibrosisandother` - `malnutrition` - `hemo`
+Original columns
 
-**Clinical measurements** - `hematocrit` - `neutrophils` - `sodium` -
-`glucose` - `bloodureanitro` - `creatinine` - `bmi` - `pulse` -
-`respiration`
+28
 
-**Date / outcome variables** - `vdate` - `discharged` - `lengthofstay`
+Target
 
-------------------------------------------------------------------------
+lengthofstay
 
-## 4. Target Leakage Detection
+Target range
+
+1–17 days
+
+Target mean
+
+~4.00 days
+
+Target median
+
+4 days
+
+Main variable groups
+
+Administrative / patient variables - gender - rcount - facid -
+eid
+
+Medical-condition indicators - dialysisrenalendstage - asthma -
+irondef - pneum - substancedependence -
+psychologicaldisordermajor - depress - psychother -
+fibrosisandother - malnutrition - hemo
+
+Clinical measurements - hematocrit - neutrophils - sodium -
+glucose - bloodureanitro - creatinine - bmi - pulse -
+respiration
+
+Date / outcome variables - vdate - discharged - lengthofstay
+
+4. Target Leakage Detection
 
 A critical relationship was identified during validation:
 
-``` text
 discharged - vdate = lengthofstay
-```
 
-Therefore, `discharged` directly reveals the target and would create
-**target leakage**.
+Therefore, discharged directly reveals the target and would create
+target leakage.
 
 The modelling workflow excludes:
 
-``` text
 discharged  → post-outcome information
 eid         → identifier
 vdate       → raw date string
-```
 
-Admission-time features are derived from `vdate`, including:
+Admission-time features are derived from vdate, including:
 
-- admission year
-- admission month
-- admission day of week
-- admission quarter
+admission year
+
+admission month
+
+admission day of week
+
+admission quarter
 
 This keeps the model focused on information available at or before the
 intended prediction point.
 
-------------------------------------------------------------------------
+5. Research Questions
 
-## 5. Research Questions
+What are the main characteristics and data-quality properties of the
+dataset?
 
-1.  What are the main characteristics and data-quality properties of the
-    dataset?
-2.  Which medical conditions and clinical measurements show the
-    strongest observed relationships with length of stay?
-3.  How does length of stay vary across admission-count categories and
-    hospital facilities?
-4.  How accurately can length of stay be predicted without
-    post-discharge leakage?
-5.  How well do the selected regression models generalize to unseen test
-    records?
+Which medical conditions and clinical measurements show the
+strongest observed relationships with length of stay?
 
-------------------------------------------------------------------------
+How does length of stay vary across admission-count categories and
+hospital facilities?
 
-## 6. Objectives
+How accurately can length of stay be predicted without
+post-discharge leakage?
 
-- Assess dataset structure and quality.
-- Identify missing values, duplicates and potential outliers.
-- Explore the distribution of length of stay.
-- Analyze relationships between predictors and length of stay.
-- Compare facilities and admission-count categories.
-- Detect and prevent target leakage.
-- Engineer appropriate admission-time features.
-- Develop multiple regression models.
-- Evaluate MAE, MSE, RMSE and R².
-- Compare training and testing performance.
-- Present findings, limitations and future work.
+How well do the selected regression models generalize to unseen test
+records?
 
-------------------------------------------------------------------------
+6. Objectives
 
-## 7. Project Workflow
+Assess dataset structure and quality.
 
-``` text
+Identify missing values, duplicates and potential outliers.
+
+Explore the distribution of length of stay.
+
+Analyze relationships between predictors and length of stay.
+
+Compare facilities and admission-count categories.
+
+Detect and prevent target leakage.
+
+Engineer appropriate admission-time features.
+
+Develop multiple regression models.
+
+Evaluate MAE, MSE, RMSE and R².
+
+Compare training and testing performance.
+
+Present findings, limitations and future work.
+
+7. Project Workflow
+
 Raw Dataset
      ↓
 Data Understanding
@@ -161,160 +178,249 @@ Model Evaluation
 Findings & Discussion
      ↓
 Final Report
-```
 
-------------------------------------------------------------------------
+8. Exploratory Data Analysis
 
-## 8. Exploratory Data Analysis
+8.1 Target Distribution
 
-### 8.1 Target Distribution
-
-The distribution of `lengthofstay` is examined to understand its range,
+The distribution of lengthofstay is examined to understand its range,
 central tendency and overall shape.
 
-### 8.2 Facility Comparison
+8.2 Facility Comparison
 
-Average and median length of stay are compared across `facid`.
+Average and median length of stay are compared across facid.
 
-### 8.3 Admission Count Category
+8.3 Admission Count Category
 
-Observed mean length of stay increases across the `rcount` categories:
+Observed mean length of stay increases across the rcount categories:
 
-| Admission Count | Mean LOS |
-|-----------------|---------:|
-| 0               |     2.72 |
-| 1               |     3.71 |
-| 2               |     5.27 |
-| 3               |     6.27 |
-| 4               |     7.25 |
-| 5+              |     8.29 |
+Admission Count
+
+Mean LOS
+
+0
+
+2.72
+
+1
+
+3.71
+
+2
+
+5.27
+
+3
+
+6.27
+
+4
+
+7.25
+
+5+
+
+8.29
 
 These are observed associations and should not be interpreted as causal
 effects.
 
-### 8.4 Correlation Analysis
+8.4 Correlation Analysis
 
-Some of the stronger observed correlations with `lengthofstay` are:
+Some of the stronger observed correlations with lengthofstay are:
 
-| Variable                     | Correlation |
-|------------------------------|------------:|
-| `psychologicaldisordermajor` |       0.281 |
-| `hemo`                       |       0.218 |
-| `irondef`                    |       0.194 |
-| `psychother`                 |       0.194 |
-| `malnutrition`               |       0.171 |
-| `dialysisrenalendstage`      |       0.170 |
+Variable
+
+Correlation
+
+psychologicaldisordermajor
+
+0.281
+
+hemo
+
+0.218
+
+irondef
+
+0.194
+
+psychother
+
+0.194
+
+malnutrition
+
+0.171
+
+dialysisrenalendstage
+
+0.170
 
 Correlation is exploratory and does not establish causation.
 
-------------------------------------------------------------------------
-
-## 9. Machine Learning Models
+9. Machine Learning Models
 
 Three regression models are evaluated:
 
-### Linear Regression
+Linear Regression
 
 A baseline model for approximately linear relationships.
 
-### Decision Tree Regressor
+Decision Tree Regressor
 
 Captures nonlinear relationships and feature interactions.
 
-### Random Forest Regressor
+Random Forest Regressor
 
 An ensemble of decision trees designed to capture more complex nonlinear
 patterns.
 
-------------------------------------------------------------------------
+10. Preprocessing
 
-## 10. Preprocessing
+Numerical variables
 
-### Numerical variables
+Median imputation
 
-- Median imputation
-- Standard scaling
+Standard scaling
 
-### Categorical variables
+Categorical variables
 
-- Most-frequent imputation
-- One-hot encoding
+Most-frequent imputation
 
-The preprocessing is implemented using `Pipeline` and
-`ColumnTransformer` so that transformations are learned within the
+One-hot encoding
+
+The preprocessing is implemented using Pipeline and
+ColumnTransformer so that transformations are learned within the
 training workflow.
 
-------------------------------------------------------------------------
-
-## 11. Model Evaluation
+11. Model Evaluation
 
 The models are evaluated using:
 
-- **MAE:** Mean Absolute Error
-- **MSE:** Mean Squared Error
-- **RMSE:** Root Mean Squared Error
-- **R²:** Coefficient of Determination
+MAE: Mean Absolute Error
+
+MSE: Mean Squared Error
+
+RMSE: Root Mean Squared Error
+
+R²: Coefficient of Determination
 
 Training and test performance are also compared to examine
 generalization.
 
-### Final Results
+Final Results
 
-| Model             | Train MAE |  Test MAE | Train RMSE | Test RMSE | Train R² |   Test R² |
-|-------------------|----------:|----------:|-----------:|----------:|---------:|----------:|
-| Random Forest     |     0.192 | **0.418** |      0.321 | **0.680** |    0.982 | **0.916** |
-| Decision Tree     |     0.625 |     0.688 |      0.828 |     0.938 |    0.877 |     0.840 |
-| Linear Regression |     0.879 |     0.866 |      1.150 |     1.137 |    0.763 |     0.764 |
+Model
 
-### Random Forest test metrics
+Train MAE
 
-``` text
+Test MAE
+
+Train RMSE
+
+Test RMSE
+
+Train R²
+
+Test R²
+
+Random Forest
+
+0.192
+
+0.418
+
+0.321
+
+0.680
+
+0.982
+
+0.916
+
+Decision Tree
+
+0.625
+
+0.688
+
+0.828
+
+0.938
+
+0.877
+
+0.840
+
+Linear Regression
+
+0.879
+
+0.866
+
+1.150
+
+1.137
+
+0.763
+
+0.764
+
+Random Forest test metrics
+
 MAE  = 0.418 days
 MSE  = 0.462
 RMSE = 0.680 days
 R²   = 0.916
-```
 
 Among the evaluated models, Random Forest produced the strongest
 held-out test performance.
 
-------------------------------------------------------------------------
+12. Key Findings
 
-## 12. Key Findings
+Length of stay varies substantially across the dataset.
 
-1.  Length of stay varies substantially across the dataset.
-2.  Admission-count categories show increasing observed average length
-    of stay.
-3.  Facility-level differences are visible in the exploratory analysis.
-4.  Several medical-condition indicators have positive observed
-    relationships with length of stay.
-5.  Clinical measurements provide additional predictive information.
-6.  `discharged` is direct target leakage and was excluded.
-7.  Tree-based models outperform the linear baseline in this experiment.
-8.  Random Forest achieves a test RMSE of **0.680 days** and test R² of
-    **0.916**.
-9.  The difference between training and test performance indicates a
-    generalization gap.
+Admission-count categories show increasing observed average length
+of stay.
 
-------------------------------------------------------------------------
+Facility-level differences are visible in the exploratory analysis.
 
-## 13. Limitations
+Several medical-condition indicators have positive observed
+relationships with length of stay.
 
-- The dataset may not generalize to other hospitals or populations.
-- Some clinically relevant factors may not be present.
-- Correlation does not imply causation.
-- Facility differences may reflect patient mix or operational
-  differences.
-- Random Forest shows a training/test performance gap.
-- The models have not been externally validated.
-- This is an academic predictive analytics project, not a clinically
-  validated decision-support system.
+Clinical measurements provide additional predictive information.
 
-------------------------------------------------------------------------
+discharged is direct target leakage and was excluded.
 
-## 14. Recommended Project Structure
+Tree-based models outperform the linear baseline in this experiment.
 
-``` text
+Random Forest achieves a test RMSE of 0.680 days and test R² of
+0.916.
+
+The difference between training and test performance indicates a
+generalization gap.
+
+13. Limitations
+
+The dataset may not generalize to other hospitals or populations.
+
+Some clinically relevant factors may not be present.
+
+Correlation does not imply causation.
+
+Facility differences may reflect patient mix or operational
+differences.
+
+Random Forest shows a training/test performance gap.
+
+The models have not been externally validated.
+
+This is an academic predictive analytics project, not a clinically
+validated decision-support system.
+
+14. Recommended Project Structure
+
 IDRA_Capstone_Healthcare_LengthOfStay/
 │
 ├── README.md
@@ -351,113 +457,143 @@ IDRA_Capstone_Healthcare_LengthOfStay/
     ├── figure5_model_rmse.png
     ├── figure6_actual_vs_predicted.png
     └── figure7_residuals.png
-```
 
-------------------------------------------------------------------------
+15. Important Files
 
-## 15. Important Files
+File
 
-| File                                                         | Purpose                           |
-|--------------------------------------------------------------|-----------------------------------|
-| `README.md`                                                  | Project documentation             |
-| `IDRA_Capstone_Healthcare_LengthOfStay_Final_Executed.ipynb` | Reproducible analysis             |
-| `IDRA_Capstone_Healthcare_LengthOfStay_FINAL.pdf`            | Final report                      |
-| `IDRA_Capstone_Healthcare_LengthOfStay_FINAL.docx`           | Editable report                   |
-| `modeling_dataset.csv`                                       | Leakage-controlled modelling data |
-| `data_dictionary.csv`                                        | Variable descriptions             |
-| `data_quality_report.csv`                                    | Data-quality results              |
-| `descriptive_statistics.csv`                                 | Descriptive statistics            |
-| `facility_summary.csv`                                       | Facility analysis                 |
-| `rcount_summary.csv`                                         | Admission-count analysis          |
-| `target_correlations.csv`                                    | Target correlations               |
-| `model_results.csv`                                          | Model evaluation results          |
+Purpose
 
-------------------------------------------------------------------------
+README.md
 
-## 16. Technologies Used
+Project documentation
 
-- Python
-- Jupyter Notebook / Google Colab
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
-- Scikit-learn
+IDRA_Capstone_Healthcare_LengthOfStay_Final_Executed.ipynb
 
-### Machine Learning
+Reproducible analysis
 
-- Linear Regression
-- Decision Tree Regressor
-- Random Forest Regressor
+IDRA_Capstone_Healthcare_LengthOfStay_FINAL.pdf
 
-------------------------------------------------------------------------
+Final report
 
-## 17. Installation
+IDRA_Capstone_Healthcare_LengthOfStay_FINAL.docx
 
-``` bash
+Editable report
+
+modeling_dataset.csv
+
+Leakage-controlled modelling data
+
+data_dictionary.csv
+
+Variable descriptions
+
+data_quality_report.csv
+
+Data-quality results
+
+descriptive_statistics.csv
+
+Descriptive statistics
+
+facility_summary.csv
+
+Facility analysis
+
+rcount_summary.csv
+
+Admission-count analysis
+
+target_correlations.csv
+
+Target correlations
+
+model_results.csv
+
+Model evaluation results
+
+16. Technologies Used
+
+Python
+
+Jupyter Notebook / Google Colab
+
+Pandas
+
+NumPy
+
+Matplotlib
+
+Seaborn
+
+Scikit-learn
+
+Machine Learning
+
+Linear Regression
+
+Decision Tree Regressor
+
+Random Forest Regressor
+
+17. Installation
+
 pip install pandas numpy matplotlib seaborn scikit-learn jupyter
-```
 
 Launch Jupyter:
 
-``` bash
 jupyter notebook
-```
 
 Then open:
 
-``` text
 notebooks/IDRA_Capstone_Healthcare_LengthOfStay_Final_Executed.ipynb
-```
 
 The notebook can also be executed in Google Colab.
 
-------------------------------------------------------------------------
-
-## 18. Reproducibility
+18. Reproducibility
 
 The project uses:
 
-``` python
 random_state = 42
-```
 
 and an:
 
-``` text
 80% training / 20% testing
-```
 
 split.
 
 The notebook contains the complete workflow from data loading through
 model evaluation and result export.
 
-------------------------------------------------------------------------
-
-## 19. Future Work
+19. Future Work
 
 Potential extensions include:
 
-- Hyperparameter tuning with cross-validation.
-- Testing additional ensemble and boosting algorithms.
-- Temporal validation using later admissions as an independent test set.
-- External validation on another hospital dataset.
-- Error analysis by length-of-stay range.
-- Subgroup performance analysis.
-- Feature importance and explainability using permutation importance or
-  SHAP.
-- Prediction uncertainty estimation.
-- Fairness and subgroup-specific error analysis.
-- Development of an API or dashboard after appropriate validation.
+Hyperparameter tuning with cross-validation.
 
-------------------------------------------------------------------------
+Testing additional ensemble and boosting algorithms.
 
-## 20. Final Deliverables
+Temporal validation using later admissions as an independent test set.
+
+External validation on another hospital dataset.
+
+Error analysis by length-of-stay range.
+
+Subgroup performance analysis.
+
+Feature importance and explainability using permutation importance or
+SHAP.
+
+Prediction uncertainty estimation.
+
+Fairness and subgroup-specific error analysis.
+
+Development of an API or dashboard after appropriate validation.
+
+20. Final Deliverables
 
 The project submission contains:
 
-``` text
 ✓ Final PDF Report
 ✓ Executed Jupyter Notebook
 ✓ Leakage-Controlled Modeling Dataset
@@ -465,34 +601,27 @@ The project submission contains:
 ✓ Analysis Output CSV Files
 ✓ Figures
 ✓ README.md
-```
 
-------------------------------------------------------------------------
+21. Author
 
-## 21. Author
+Student Name: Chinta Prithvi
 
-**Student Name:** \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+Institute:
+National Institute Of Technology, Andhra Pradesh
 
-**Institute:**
-\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+Institute Roll No.: 423124
 
-**Institute Roll No.:** \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+Enrollment No.: IDRA-2026-498821
 
-**Enrollment No.:** \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+Program: B.Tech — Computer Science and Engineering
 
-**Program:** B.Tech — Computer Science and Engineering
+Project: IDRA Data Science & AI Final Capstone Project
 
-**Project:** IDRA Data Science & AI Final Capstone Project
+22. Project Status
 
-------------------------------------------------------------------------
-
-## 22. Project Status
-
-**Completed**
+Completed
 
 The project provides a complete end-to-end machine-learning workflow
 covering data quality assessment, leakage detection, exploratory
 analysis, statistical analysis, feature engineering, regression
 modelling, evaluation, findings, limitations and future work.
-#   P r e d i c t i v e - A n a l y t i c s - f o r - H e a l t h c a r e - F o r e c a s t i n g - P a t i e n t - L e n g t h - o f - S t a y - i n - U r b a n - H o s p i t a l s - U s i n g - M L  
- 
