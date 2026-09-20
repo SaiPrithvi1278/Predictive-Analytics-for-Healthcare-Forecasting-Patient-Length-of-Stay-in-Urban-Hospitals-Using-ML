@@ -1,0 +1,29 @@
+Variable,Meaning,Type,Role
+eid,Record identifier,Integer,Identifier / excluded
+vdate,Visit/admission date,Date-like string,Admission-time date; used to derive calendar features
+rcount,Admission count category,Categorical,Feature
+gender,Patient gender category,Categorical,Feature
+dialysisrenalendstage,End-stage renal/dialysis indicator,Binary numeric,Feature
+asthma,Asthma indicator,Binary numeric,Feature
+irondef,Iron deficiency indicator,Binary numeric,Feature
+pneum,Pneumonia indicator,Binary numeric,Feature
+substancedependence,Substance dependence indicator,Binary numeric,Feature
+psychologicaldisordermajor,Major psychological disorder indicator,Binary numeric,Feature
+depress,Depression indicator,Binary numeric,Feature
+psychother,Psychotherapy indicator,Binary numeric,Feature
+fibrosisandother,Fibrosis/other condition indicator,Binary numeric,Feature
+malnutrition,Malnutrition indicator,Binary numeric,Feature
+hemo,Hemoglobin-related measure/indicator,Numeric,Feature
+hematocrit,Hematocrit measurement,Numeric,Feature
+neutrophils,Neutrophil measurement,Numeric,Feature
+sodium,Sodium measurement,Numeric,Feature
+glucose,Glucose measurement,Numeric,Feature
+bloodureanitro,Blood urea nitrogen measurement,Numeric,Feature
+creatinine,Creatinine measurement,Numeric,Feature
+bmi,Body mass index,Numeric,Feature
+pulse,Pulse measurement,Numeric,Feature
+respiration,Respiration measurement,Numeric,Feature
+secondarydiagnosisnonicd9,Secondary diagnosis count/measure,Numeric,Feature
+discharged,Discharge date,Date-like string,Excluded: post-outcome leakage
+facid,Hospital facility,Categorical,Feature
+lengthofstay,Observed length of stay,Integer,Target
