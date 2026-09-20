@@ -36,33 +36,19 @@ the fact.
 
 Dataset: Healthcare — Patient Length of Stay
 
-Property
+Property                Value
 
-Value
+Rows                    61,680
 
-Rows
+Original columns        28
 
-61,680
+Target                  lengthofstay
 
-Original columns
+Target range            1–17 days
 
-28
+Target mean             ~4.00 days
 
-Target
-
-lengthofstay
-
-Target range
-
-1–17 days
-
-Target mean
-
-~4.00 days
-
-Target median
-
-4 days
+Target median           4 days
 
 Main variable groups
 
@@ -151,33 +137,33 @@ Present findings, limitations and future work.
 
 7. Project Workflow
 
-Raw Dataset
-     ↓
-Data Understanding
-     ↓
-Data Quality Assessment
-     ↓
-Leakage Detection
-     ↓
-Cleaning & Feature Engineering
-     ↓
-Exploratory Data Analysis
-     ↓
-Statistical Analysis
-     ↓
-Train/Test Split
-     ↓
-Preprocessing Pipeline
-     ↓
-Linear Regression
-Decision Tree Regressor
-Random Forest Regressor
-     ↓
-Model Evaluation
-     ↓
-Findings & Discussion
-     ↓
-Final Report
+          Raw Dataset
+               ↓
+          Data Understanding
+               ↓
+          Data Quality Assessment
+               ↓
+          Leakage Detection
+               ↓
+          Cleaning & Feature Engineering
+               ↓
+          Exploratory Data Analysis
+               ↓
+          Statistical Analysis
+               ↓
+          Train/Test Split
+               ↓
+          Preprocessing Pipeline
+               ↓
+          Linear Regression
+          Decision Tree Regressor
+          Random Forest Regressor
+               ↓
+          Model Evaluation
+               ↓
+          Findings & Discussion
+               ↓
+          Final Report
 
 8. Exploratory Data Analysis
 
